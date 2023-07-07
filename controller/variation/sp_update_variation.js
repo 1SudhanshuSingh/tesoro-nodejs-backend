@@ -1,6 +1,6 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const setUserBlock = (req, res) => {
+const updateVariation = (req, res) => {
   const values = [
     req.body.variationID,
     req.body.variationName,
@@ -25,4 +25,4 @@ const setUserBlock = (req, res) => {
   );
 };
 
-module.exports = setUserBlock;
+module.exports = updateVariation;

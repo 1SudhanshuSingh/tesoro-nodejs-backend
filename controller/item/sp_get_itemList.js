@@ -1,6 +1,6 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const setUserBlock = (req, res) => {
+const getItemList = (req, res) => {
   const values = [
     req.body.prodId,
     req.body.lowerPrice,
@@ -28,4 +28,4 @@ const setUserBlock = (req, res) => {
   );
 };
 
-module.exports = setUserBlock;
+module.exports = getItemList;
