@@ -7,13 +7,20 @@ const express = require("express"),
   logger = require("./helpers/logger");
 require("dotenv").config();
 
-// routers import
+/* ----------------------------- routers import ----------------------------- */
 const authentication = require("./routes/authentication");
-const userImages = require("./routes/galleryImages");
+const images = require("./routes/images");
 const admin = require("./routes/admin");
-const blockUser = require("./routes/blockUser");
 
-//Middleware configs
+const category = require("./routes/category");
+const filter = require("./routes/filter");
+const item = require("./routes/item");
+const product = require("./routes/product");
+const variation = require("./routes/variation");
+
+/*
+
+/* --------------------------- Middleware configs --------------------------- */
 app.use(
   morgan("combined", {
     stream: {
@@ -31,11 +38,17 @@ app.use(
 app.use(bodyParser.json({ limit: "5mb" }));
 app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 
-// use routers
+/* ------------------------------- use routers ------------------------------ */
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authentication);
 app.use("/api/admin", admin);
-app.use("/api/blockUser", blockUser);
+app.use("/api/images", images);
+app.use("/api/category", category);
+app.use("/api/item", item);
+app.use("/api/product", product);
+app.use("/api/filter", filter);
+app.use("/api/variation", variation);
+
 
 // make server object that contain port property and the value for our server.
 const server = {

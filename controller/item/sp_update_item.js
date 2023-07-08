@@ -1,15 +1,16 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const setUserBlock = (req, res) => {
+const updateItem = (req, res) => {
   const values = [
     req.body.id,
     req.body.sku,
     req.body.qty,
     req.body.active,
     req.body.price,
-    req.body.name,
+    // req.body.name,
     req.body.image,
-    req.body.itemVariations,
+    req.body.itemFilterValues,
+    req.body.item_detail,
   ];
   executeStoredProcedure("sp_update_item", [values]).then(
     (result) => {
@@ -30,4 +31,4 @@ const setUserBlock = (req, res) => {
   );
 };
 
-module.exports = setUserBlock;
+module.exports = updateItem;
