@@ -1,10 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
-const setUserCoverImage = async (req, res) => {
-  const coverPhotoURI = req.files.map(
-    (file) => `uploads/${req.body.userId}/${file.filename}`
-  );
-  const values = [req.body.userId, coverPhotoURI[0]];
-  executeStoredProcedure("sp_set_userCoverImage", [values]).then((result) => {
+
+const getFilterOption = (req, res) => {
+  const values = [req.body.optionId, req.body.optionName,req.body.clause];
+  executeStoredProcedure("sp_get_filterOptions", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -15,10 +13,10 @@ const setUserCoverImage = async (req, res) => {
           status: 200,
         });
       } catch (error) {
-        res.send(error);
+        throw error;
       }
     }
   });
 };
 
-module.exports = setUserCoverImage;
+module.exports = getFilterOption;

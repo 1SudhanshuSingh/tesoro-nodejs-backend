@@ -1,8 +1,16 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const createVariation = (req, res) => {
-  const values = [req.body.variationName, req.body.variationJson];
-  executeStoredProcedure("sp_create_variation", [values]).then((result) => {
+const createBuyerCart = (req, res) => {
+  const values = [
+    req.body.buyerId, //check buyer_login table for this
+    req.body.itemId, //check item table for this
+    req.body.itemQty,
+    req.body.status,
+    req.body.timeDate,
+  ];
+  console.log(values);
+
+  executeStoredProcedure("sp_create_buyerCart", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +27,4 @@ const createVariation = (req, res) => {
   });
 };
 
-module.exports = createVariation;
+module.exports = createBuyerCart;

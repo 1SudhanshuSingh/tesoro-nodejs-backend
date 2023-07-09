@@ -1,18 +1,17 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const createSubProduct = (req, res) => {
+const createBuyerLogin = (req, res) => {
   const values = [
-    // req.body.subProdId,
-    req.body.prodId,
-    // req.body.prodTags,
-    req.body.filterValues,
-    // req.body.prodType,
-    req.body.name,
-    req.body.active,
-    req.body.filterList,
-    req.body.image,
+    req.body.email,
+    req.body.isdCode,
+    req.body.mob,
+    req.body.pwd,
+    req.body.emailVerify,
+    req.body.profilePlatform,
   ];
-  executeStoredProcedure("sp_create_subproduct", [values]).then((result) => {
+  console.log(values);
+
+  executeStoredProcedure("sp_create_buyerLogin", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -29,4 +28,4 @@ const createSubProduct = (req, res) => {
   });
 };
 
-module.exports = createSubProduct;
+module.exports = createBuyerLogin;

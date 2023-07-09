@@ -8,7 +8,7 @@ const userSignUp = (req, res) => {
   const { countryCode } = req.body;
   const mobileWithCountryCode = countryCode.replace("+", "");
   const values = [
-    req.body.emailid,
+    req.body.emailId,
     mobileWithCountryCode,
     req.body.mobile,
     hashedPwd,

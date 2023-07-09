@@ -1,8 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const createFilter = (req, res) => {
-  const values = [req.body.filterName, req.body.filterOptions];
-  executeStoredProcedure("sp_create_filter", [values]).then((result) => {
+const updateFilterOption = (req, res) => {
+  const values = [req.body.optionId, req.body.optionName];
+  executeStoredProcedure("sp_update_filterOptions", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +19,4 @@ const createFilter = (req, res) => {
   });
 };
 
-module.exports = createFilter;
+module.exports = updateFilterOption;
