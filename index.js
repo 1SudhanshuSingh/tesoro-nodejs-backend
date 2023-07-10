@@ -9,14 +9,16 @@ require("dotenv").config();
 
 /* ----------------------------- routers import ----------------------------- */
 const authentication = require("./routes/authentication");
-const images = require("./routes/images");
 const admin = require("./routes/admin");
 
 const category = require("./routes/category");
 const filter = require("./routes/filter");
+const masterfilter = require("./routes/masterFilter");
 const item = require("./routes/item");
 const product = require("./routes/product");
-const variation = require("./routes/variation");
+const buyer = require("./routes/buyer");
+// const images = require("./routes/images");
+// const variation = require("./routes/variation");
 
 /*
 
@@ -42,13 +44,14 @@ app.use(bodyParser.urlencoded({ limit: "5mb", extended: true }));
 app.use("/api/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/auth", authentication);
 app.use("/api/admin", admin);
-app.use("/api/images", images);
+app.use("/api/buyer", buyer);
 app.use("/api/category", category);
 app.use("/api/item", item);
 app.use("/api/product", product);
 app.use("/api/filter", filter);
-app.use("/api/variation", variation);
-
+app.use("/api/masterfilter", masterfilter);
+// app.use("/api/images", images);
+// app.use("/api/variation", variation);
 
 // make server object that contain port property and the value for our server.
 const server = {

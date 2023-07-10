@@ -2,12 +2,12 @@ const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const createProduct = (req, res) => {
   const values = [
-    req.body.catID,
+    req.body.catId,
     req.body.name,
     req.body.description,
     req.body.image,
     req.body.active,
-    req.body.type,
+    // req.body.type,
     req.body.sequence,
     req.body.filterList,
   ];

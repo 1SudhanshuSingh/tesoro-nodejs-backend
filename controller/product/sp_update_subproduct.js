@@ -1,9 +1,9 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const createSubProduct = (req, res) => {
+const updateSubProduct = (req, res) => {
   const values = [
-    // req.body.subProdId,
-    req.body.prodId,
+    req.body.subProdId,
+    req.body.subProdProdId,
     // req.body.prodTags,
     req.body.filterValues,
     // req.body.prodType,
@@ -12,7 +12,7 @@ const createSubProduct = (req, res) => {
     req.body.filterList,
     req.body.image,
   ];
-  executeStoredProcedure("sp_create_subproduct", [values]).then((result) => {
+  executeStoredProcedure("sp_update_subproduct", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -29,4 +29,4 @@ const createSubProduct = (req, res) => {
   });
 };
 
-module.exports = createSubProduct;
+module.exports = updateSubProduct;

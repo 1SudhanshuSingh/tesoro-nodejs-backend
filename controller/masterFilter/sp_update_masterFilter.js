@@ -1,8 +1,12 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const updateItemDetail = (req, res) => {
-  const values = [req.body.id, req.body.detail, req.body.images];
-  executeStoredProcedure("sp_update_itemDetail", [values]).then((result) => {
+const updateMasterFilter = (req, res) => {
+  const values = [
+    req.body.filterId,
+    req.body.filterName,
+    req.body.filterOption,
+  ];
+  executeStoredProcedure("sp_update_masterFilter", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +23,4 @@ const updateItemDetail = (req, res) => {
   });
 };
 
-module.exports = updateItemDetail;
+module.exports = updateMasterFilter;

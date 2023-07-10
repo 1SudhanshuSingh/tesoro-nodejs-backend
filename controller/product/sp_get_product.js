@@ -1,16 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getItemList = (req, res) => {
-  const values = [
-    req.body.prodId,
-    req.body.lowerPrice,
-    req.body.upperPrice,
-    req.body.filterSubprodValues,
-    req.body.filterItemValues,
-    req.body.sortBy,
-    req.body.ascDesc,
-  ];
-  executeStoredProcedure("sp_get_itemList", [values]).then((result) => {
+const getProduct = (req, res) => {
+  const values = [req.body.prodId];
+  executeStoredProcedure("sp_get_product", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -27,4 +19,4 @@ const getItemList = (req, res) => {
   });
 };
 
-module.exports = getItemList;
+module.exports = getProduct;

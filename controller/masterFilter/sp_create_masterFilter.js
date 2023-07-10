@@ -1,8 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getUserImages = (req, res) => {
-  const values = [req.body.userId];
-  executeStoredProcedure("sp_get_userImages", [values]).then((result) => {
+const createMasterFilter = (req, res) => {
+  const values = [req.body.filterName, req.body.filterOption];
+  executeStoredProcedure("sp_create_masterFilter", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +19,4 @@ const getUserImages = (req, res) => {
   });
 };
 
-module.exports = getUserImages;
+module.exports = createMasterFilter;

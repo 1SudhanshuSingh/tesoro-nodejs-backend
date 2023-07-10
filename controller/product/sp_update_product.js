@@ -1,8 +1,17 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getVariationList = (req, res) => {
-  const values = [req.body.prodId];
-  executeStoredProcedure("sp_get_variationList", [values]).then((result) => {
+const updateProduct = (req, res) => {
+  const values = [
+    req.body.prodId,
+    req.body.catId,
+    req.body.active,
+    req.body.name,
+    req.body.description,
+    req.body.image,
+    req.body.sequence,
+    req.body.filterList,
+  ];
+  executeStoredProcedure("sp_update_product", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +28,4 @@ const getVariationList = (req, res) => {
   });
 };
 
-module.exports = getVariationList;
+module.exports = updateProduct;
