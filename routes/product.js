@@ -4,11 +4,13 @@ const updateProduct = require("../controller/product/sp_update_product");
 const createSubProduct = require("../controller/product/sp_create_subproduct");
 const updateSubProduct = require("../controller/product/sp_update_subproduct");
 const getSubProduct = require("../controller/product/sp_get_subproduct");
-
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 const express = require("express"),
   router = express.Router();
 
-router.post("/createProduct", (req, res) => {
+router.post("/createProduct", upload.single("productImage"), (req, res) => {
+  console.log("file:", req.file);
   createProduct(req, res);
 });
 router.post("/getProduct", (req, res) => {
