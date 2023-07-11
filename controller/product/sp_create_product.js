@@ -1,16 +1,27 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
+const multer = require("multer");
+const path = require("path");
+const upload = require("../../helpers/multer");
+
+const productFilterList = ["product1", "product2", "product3"];
+
+const jsonData = JSON.stringify(productFilterList);
 
 const createProduct = (req, res) => {
+  // console.log(req.body,req.file,req);
+  // const image = req.file.productImage;
   const values = [
-    req.body.catId,
-    req.body.name,
-    req.body.description,
-    req.body.image,
-    req.body.active,
-    // req.body.type,
-    req.body.sequence,
-    req.body.filterList,
+    req.body.categoryId,
+    req.body.productName,
+    req.body.productDescription,
+    // "test", // req.body.productImage,
+    req.body.file ? req.file.path : "", // Store the image path in the database if file exists
+    req.body.productActive ? "T" : "F",
+    req.body.productSequence,
+    jsonData,
+    // JSON.stringify(req.body.productFilterList),
   ];
+
   executeStoredProcedure("sp_create_product", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
