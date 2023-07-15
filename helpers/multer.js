@@ -23,6 +23,7 @@ const upload = multer({
   limits: {
     fileSize: 1024 * 1024 * 5, // 5 MB
   },
+
   fileFilter: function (req, file, cb) {
     const profilePicExt = file.mimetype.split("/")[1];
     const allowedExtensions = ["jpg", "jpeg", "png"];
@@ -35,5 +36,24 @@ const upload = multer({
   },
   encoding: "utf8",
 });
+const handleMulterError = (err, req, res, next) => {
+  if (err instanceof multer.MulterError) {
+    // Handle Multer-specific errors
+    if (err.code === "LIMIT_FILE_SIZE") {
+      return res.status(400).json({
+        message: "File size limit exceeded",
+      });
+    }
+    // Handle other Multer errors if needed
+  } else if (err) {
+    // Handle other errors
+    return res.status(500).json({
+      message: "An error occurred during file upload",
+    });
+  }
 
-module.exports = upload;
+  // No error occurred, proceed to the next middleware
+  next();
+};
+
+module.exports = { upload, handleMulterError };
