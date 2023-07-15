@@ -1,9 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getCategory = (req, res) => {
-  const values = [req.body.catId];
-console.log(values);
-  executeStoredProcedure("sp_get_category", [values]).then((result) => {
+const getMasterFilter = (req, res) => {
+  const values = [req.body.filterId, req.body.filterName,req.body.useLikeClause];
+  executeStoredProcedure("sp_get_masterFilter", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -20,4 +19,4 @@ console.log(values);
   });
 };
 
-module.exports = getCategory;
+module.exports = getMasterFilter;

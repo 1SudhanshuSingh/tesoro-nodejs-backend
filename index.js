@@ -17,6 +17,7 @@ const masterfilter = require("./routes/masterFilter");
 const item = require("./routes/item");
 const product = require("./routes/product");
 const buyer = require("./routes/buyer");
+const { error } = require("console");
 // const images = require("./routes/images");
 // const variation = require("./routes/variation");
 
@@ -54,6 +55,7 @@ app.use("/api/masterfilter", masterfilter);
 // app.use("/api/variation", variation);
 
 // make server object that contain port property and the value for our server.
+
 const server = {
   port: process.env.SERVER_PORT,
 };

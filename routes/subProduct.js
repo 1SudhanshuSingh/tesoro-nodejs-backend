@@ -1,6 +1,3 @@
-const createProduct = require("../controller/product/sp_create_product");
-const getProduct = require("../controller/product/sp_get_product");
-const updateProduct = require("../controller/product/sp_update_product");
 const createSubProduct = require("../controller/product/sp_create_subproduct");
 const updateSubProduct = require("../controller/product/sp_update_subproduct");
 const getSubProduct = require("../controller/product/sp_get_subproduct");
@@ -16,7 +13,7 @@ const express = require("express"),
 router.post(
   "/createSubProduct",
   (req, res, next) => {
-    upload.single("Image")(req, res, (err) => {
+    upload.array("subProductImage", 10)(req, res, (err) => {
       if (err) {
         console.error("Multer Error:", err); // Log the error
         handleMulterError(err, req, res, next); // Use the error handler middleware
@@ -27,19 +24,7 @@ router.post(
   },
   createSubProduct
 );
-// router.post("/createProduct", upload.single("productImage"), (req, res) => {
-//   createProduct(req, res);
-// });
-router.post("/getProduct", (req, res) => {
-  getProduct(req, res);
-});
-router.post("/updateProduct", (req, res) => {
-  updateProduct(req, res);
-});
 
-router.post("/createProduct", (req, res) => {
-  createProduct(req, res);
-});
 router.post("/getSubProduct", (req, res) => {
   getSubProduct(req, res);
 });

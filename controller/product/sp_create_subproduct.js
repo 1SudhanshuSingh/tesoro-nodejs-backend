@@ -3,15 +3,16 @@ const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 const createSubProduct = (req, res) => {
   const values = [
     // req.body.subProdId,
-    req.body.prodId,
+    JSON.stringify(req.body.ProdID),
     // req.body.prodTags,
-    req.body.filterValues,
+    JSON.stringify(req.body.FilterValues),
     // req.body.prodType,
-    req.body.name,
-    req.body.active,
-    req.body.filterList,
-    req.body.image,
+    req.body.Name,
+    req.body.Active,
+    JSON.stringify(req.body.FilterList),
+    req.file.filename,
   ];
+  console.log(values);
   executeStoredProcedure("sp_create_subproduct", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);

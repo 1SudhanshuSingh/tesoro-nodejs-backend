@@ -1,16 +1,22 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const createItem = (req, res) => {
+  console.log("body=>", req.body);
+  const itemImages = req.files.map((file) => file.path);
+  console.log(itemImages);
   const values = [
     req.body.subProdId,
-    req.body.itemSku,
-    req.body.qty,
-    req.body.active,
-    req.body.price,
-    req.body.images,
-    req.body.filterValues,
-    req.body.detail,
+    req.body.ItemSku,
+    req.body.ItemQty,
+    req.body.ItemActive,
+    req.body.ItemPrice,
+    // req.body.ItemImage,
+    // Get the paths of the uploaded images
+    JSON.stringify(itemImages), // Convert to string
+    JSON.stringify(req.body.ItemFilterValues), // Convert to string
+    req.body.ItemDetail,
   ];
+  console.log("v=>", values);
   executeStoredProcedure("sp_create_item", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
