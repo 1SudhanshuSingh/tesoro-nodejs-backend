@@ -7,6 +7,14 @@ const getSubProduct = require("../controller/product/sp_get_subproduct");
 
 const { upload } = require("../helpers/multer");
 const { handleMulterError } = require("../helpers/multer");
+=======
+const getProdThruCatId = require("../controller/product/sp_get_allProdThruCatID");
+const getAllSubProdThruProdId = require("../controller/product/sp_get_allSubprodThruProdID");
+const getAllItemsThruSubProdId = require("../controller/product/sp_get_allItemsThruSubprodID");
+
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+
 const express = require("express"),
   router = express.Router();
 
