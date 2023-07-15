@@ -1,12 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getMasterFilter = (req, res) => {
-  const values = [
-    req.body.filterId,
-    req.body.filterName,
-    req.body.clause, //useLikeClause
-  ];
-  executeStoredProcedure("sp_get_masterFilter", [values]).then((result) => {
+const getallFilterOptionsAvailableForFilterID = (req, res) => {
+  const values = [req.body.optionId, req.body.optionName, req.body.clause];
+  executeStoredProcedure("sp_get_allFilterOptionsAvailableForFilterID", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -23,4 +19,4 @@ const getMasterFilter = (req, res) => {
   });
 };
 
-module.exports = getMasterFilter;
+module.exports = getallFilterOptionsAvailableForFilterID;

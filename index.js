@@ -13,7 +13,7 @@ const admin = require("./routes/admin");
 
 const category = require("./routes/category");
 const filter = require("./routes/filter");
-const masterfilter = require("./routes/masterFilter");
+
 const item = require("./routes/item");
 const product = require("./routes/product");
 const buyer = require("./routes/buyer");
@@ -50,7 +50,7 @@ app.use("/api/category", category);
 app.use("/api/item", item);
 app.use("/api/product", product);
 app.use("/api/filter", filter);
-app.use("/api/masterfilter", masterfilter);
+
 // app.use("/api/images", images);
 // app.use("/api/variation", variation);
 
