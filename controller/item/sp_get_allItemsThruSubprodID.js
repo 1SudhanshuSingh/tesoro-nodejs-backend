@@ -1,8 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getAllSubProdThruProdId = (req, res) => {
-  const values = [req.body.prodId, req.body.maxSubprodId, req.body.limit];
-  executeStoredProcedure("sp_get_allSubprodThruProdID", [values]).then((result) => {
+const getAllItemsThruSubProdId = (req, res) => {
+  const values = [req.body.subProdId, req.body.maxItemId, req.body.limit];
+  executeStoredProcedure("sp_get_allItemsThruSubprodID", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +19,4 @@ const getAllSubProdThruProdId = (req, res) => {
   });
 };
 
-module.exports = getAllSubProdThruProdId;
+module.exports = getAllItemsThruSubProdId;

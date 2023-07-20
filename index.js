@@ -10,14 +10,12 @@ require("dotenv").config();
 /* ----------------------------- routers import ----------------------------- */
 const authentication = require("./routes/authentication");
 const admin = require("./routes/admin");
-
 const category = require("./routes/category");
 const filter = require("./routes/filter");
-
 const item = require("./routes/item");
 const product = require("./routes/product");
 const buyer = require("./routes/buyer");
-const { error } = require("console");
+const subProduct = require("./routes/subProduct")
 // const images = require("./routes/images");
 // const variation = require("./routes/variation");
 
@@ -49,6 +47,7 @@ app.use("/api/buyer", buyer);
 app.use("/api/category", category);
 app.use("/api/item", item);
 app.use("/api/product", product);
+app.use("/api/subProduct", subProduct);
 app.use("/api/filter", filter);
 
 // app.use("/api/images", images);

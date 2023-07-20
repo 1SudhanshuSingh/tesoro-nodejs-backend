@@ -3,6 +3,7 @@ const multer = require("multer");
 const getItem = require("../controller/item/sp_get_item");
 const getItemList = require("../controller/item/sp_get_itemList");
 const updateItem = require("../controller/item/sp_update_item");
+const getAllItemsThruSubProdId = require("../controller/item/sp_get_allItemsThruSubprodID");
 // const updateItemDetail = require("../controller/item/sp_update_itemDetail");
 const { upload } = require("../helpers/multer");
 const { handleMulterError } = require("../helpers/multer");
@@ -42,7 +43,9 @@ router.post("/getItemList", (req, res) => {
 router.post("/updateItem", (req, res) => {
   updateItem(req, res);
 });
-
+router.post("/getAllItemsThruSubProdId", (req, res) => {
+  getAllItemsThruSubProdId(req, res);
+});
 // router.post("/updateItemDetail", (req, res) => {
 //   updateItemDetail(req, res);
 // });
