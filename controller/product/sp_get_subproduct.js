@@ -1,7 +1,7 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const getSubProduct = (req, res) => {
-  const values = [subProdId];
+  const values = [req.body.subProdId];
   executeStoredProcedure("sp_get_subproduct", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
