@@ -9,6 +9,7 @@ const getAllFilterAvailableForProdId = require("../controller/filter/sp_get_allF
 const createMasterFilter = require("../controller/filter/sp_create_masterFilter");
 
 const updateMasterFilter = require("../controller/filter/sp_update_masterFilter");
+ 
 
 const express = require("express"),
   router = express.Router();
@@ -34,6 +35,7 @@ router.post("/getFilterOption", (req, res) => {
 router.post("/getMasterFilter", (req, res) => {
   getMasterFilter(req, res);
 });
+
 router.post("/getProdThruCatId", (req, res) => {
   getProdThruCatId(req, res);
 });
@@ -47,5 +49,6 @@ router.post("/getMasterFilter", (req, res) => {
 router.post("/updateMasterFilter", (req, res) => {
   updateMasterFilter(req, res);
 });
+
 
 module.exports = router;
