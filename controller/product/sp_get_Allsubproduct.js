@@ -1,8 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getAllSubProdThruProdId = (req, res) => {
-  const values = [subProdId];
-  executeStoredProcedure("sp_get_allSubprodThruProdID", [values]).then((result) => {
+const getAllSubProduct = (req, res) => {
+  const values = [req.body.subProdId];
+  executeStoredProcedure("sp_getAll_subproducts", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +19,4 @@ const getAllSubProdThruProdId = (req, res) => {
   });
 };
 
-module.exports = getAllSubProdThruProdId;
+module.exports = getAllSubProduct;

@@ -1,8 +1,9 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const getCategory = (req, res) => {
-  const values = [req.body.catId];
-console.log(values);
+  const { catID } = req.body.params;
+  const values = [catID];
+  console.log(values);
   executeStoredProcedure("sp_get_category", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);

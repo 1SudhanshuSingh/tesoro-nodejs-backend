@@ -3,13 +3,13 @@ const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 const createSubProduct = (req, res) => {
   const values = [
     // req.body.subProdId,
-    JSON.stringify(req.body.ProdID),
+    req.body.ProdID,
     // req.body.prodTags,
     JSON.stringify(req.body.FilterValues),
     // req.body.prodType,
     req.body.Name,
     req.body.Active,
-    JSON.stringify(req.body.FilterList),
+    req.body.FilterList,
     req.file.filename,
   ];
   console.log(values);

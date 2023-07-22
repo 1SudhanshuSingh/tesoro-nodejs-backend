@@ -2,9 +2,7 @@ const createFilterOption = require("../controller/filter/sp_create_filterOption"
 const getFilterOption = require("../controller/filter/sp_get_filterOptions");
 const updateFilterOption = require("../controller/filter/sp_update_filterOptions");
 const getMasterFilter = require("../controller/filter/sp_get_masterFilter");
-const getProdThruCatId = require("../controller/filter/sp_get_allProdThruCatID");
-const getAllSubProdThruProdId = require("../controller/filter/sp_get_allSubprodThruProdID");
-const getAllItemsThruSubProdId = require("../controller/filter/sp_get_allItemsThruSubprodID");
+
 const getallFilterOptionsAvailableForFilterID = require("../controller/filter/sp_get_allFilterOptionsAvailableForFilterID");
 const getAllFilterAvailableForProdId = require("../controller/filter/sp_get_allFiltersAvailableForProdID");
 
@@ -39,12 +37,7 @@ router.post("/getMasterFilter", (req, res) => {
 router.post("/getProdThruCatId", (req, res) => {
   getProdThruCatId(req, res);
 });
-router.post("/getAllSubProdThruProdId", (req, res) => {
-  getAllSubProdThruProdId(req, res);
-});
-router.post("/getAllItemsThruSubProdId", (req, res) => {
-  getAllItemsThruSubProdId(req, res);
-});
+
 router.post("/createMasterFilter", (req, res) => {
   createMasterFilter(req, res);
 });

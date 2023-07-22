@@ -2,7 +2,7 @@ const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const createItem = (req, res) => {
   console.log("body=>", req.body);
-  const itemImages = req.files.map((file) => file.path);
+  const itemImages = req.files.map((file) => file.filename);
   console.log(itemImages);
   const values = [
     req.body.subProdId,
@@ -13,7 +13,7 @@ const createItem = (req, res) => {
     // req.body.ItemImage,
     // Get the paths of the uploaded images
     JSON.stringify(itemImages), // Convert to string
-    JSON.stringify(req.body.ItemFilterValues), // Convert to string
+    req.body.ItemFilterValues, // Convert to string
     req.body.ItemDetail,
   ];
   console.log("v=>", values);

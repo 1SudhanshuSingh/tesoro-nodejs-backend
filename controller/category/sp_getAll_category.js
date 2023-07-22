@@ -1,8 +1,7 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const getProdThruCatId = (req, res) => {
-  const values = [subProdId];
-  executeStoredProcedure("sp_get_allProdThruCatID", [values]).then((result) => {
+const getAllCategory = (req, res) => {
+  executeStoredProcedure("sp_getAll_category", [0]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -19,4 +18,4 @@ const getProdThruCatId = (req, res) => {
   });
 };
 
-module.exports = getProdThruCatId;
+module.exports = getAllCategory;

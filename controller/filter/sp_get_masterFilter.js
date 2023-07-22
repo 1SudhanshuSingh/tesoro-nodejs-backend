@@ -1,7 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const getMasterFilter = (req, res) => {
-  const values = [req.body.filterId, req.body.filterName,req.body.useLikeClause];
+  const { filterId, filterName, useLikeClause } = req?.body;
+  const values = [filterId, filterName, useLikeClause];
   executeStoredProcedure("sp_get_masterFilter", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);

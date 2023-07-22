@@ -1,10 +1,8 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
-const updateMasterFilter = (req, res) => {
-  console.log(req.body.params);
-  const { filterId, filterName, filterOption } = req.body.params;
-  const values = [filterId, filterName, JSON.stringify(filterOption)];
-  executeStoredProcedure("sp_update_masterFilter", [values]).then((result) => {
+const getAllProdThruCatId = (req, res) => {
+  const values = [req.body.catId, req.body.maxProdId, req.body.limit];
+  executeStoredProcedure("sp_get_allProdThruCatID", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {
@@ -21,4 +19,4 @@ const updateMasterFilter = (req, res) => {
   });
 };
 
-module.exports = updateMasterFilter;
+module.exports = getAllProdThruCatId;

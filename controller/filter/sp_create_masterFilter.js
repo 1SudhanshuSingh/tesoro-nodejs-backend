@@ -1,7 +1,9 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const createMasterFilter = (req, res) => {
-  const values = [req.body.filterName, req.body.filterOption];
+  const { filterName, filterOptions } = req?.body;
+  const values = [filterName, filterOptions];
+  console.log(values);
   executeStoredProcedure("sp_create_masterFilter", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
