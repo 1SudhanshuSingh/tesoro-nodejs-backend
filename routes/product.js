@@ -38,9 +38,21 @@ router.post("/updateProduct", (req, res) => {
   updateProduct(req, res);
 });
 
-router.post("/createProduct", (req, res) => {
-  createProduct(req, res);
-});
+router.post(
+  "/createProduct",
+  (req, res, next) => {
+    upload.single("productImage")(req, res, (err) => {
+      if (err) {
+        console.error("Multer Error:", err); // Log the error
+        handleMulterError(err, req, res, next); // Use the error handler middleware
+      } else {
+        next(); // Proceed to the next middleware
+      }
+    });
+  },
+
+  createProduct
+);
 router.post("/getSubProduct", (req, res) => {
   getSubProduct(req, res);
 });

@@ -2,7 +2,7 @@ const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const getAllFilterAvailableForProdId = (req, res) => {
   const values = [req.body.prodID, req.body.maxFilterID, req.body.limit];
-  console.log(values);
+
   executeStoredProcedure("sp_get_allFiltersAvailableForProdID", [values]).then(
     (result) => {
       if (result["0"]["output"] < 0) {

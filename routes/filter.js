@@ -20,12 +20,9 @@ const express = require("express"),
 router.post("/getAllFilterAvailableForProdId", (req, res) => {
   getAllFilterAvailableForProdId(req, res);
 });
-router.post("/createFilterOption", (req, res) => {
-  createFilterOption(req, res);
-});
-router.post("/getallFilterOptionsAvailableForFilterID", (req, res) => {
-  getallFilterOptionsAvailableForFilterID(req, res);
-});
+
+
+//filterOptions
 router.post("/createFilterOption", (req, res) => {
   createFilterOption(req, res);
 });
@@ -35,12 +32,11 @@ router.post("/updateFilterOption", (req, res) => {
 router.post("/getFilterOption", (req, res) => {
   getFilterOption(req, res);
 });
-router.post("/getMasterFilter", (req, res) => {
-  getMasterFilter(req, res);
-});
 
-router.post("/getProdThruCatId", (req, res) => {
-  getProdThruCatId(req, res);
+
+
+router.post("/getallFilterOptionsAvailableForFilterID", (req, res) => {
+  getallFilterOptionsAvailableForFilterID(req, res);
 });
 router.post("/getAllSubProdThruProdId", (req, res) => {
   getAllSubProdThruProdId(req, res);
@@ -48,6 +44,15 @@ router.post("/getAllSubProdThruProdId", (req, res) => {
 router.post("/getAllItemsThruSubProdId", (req, res) => {
   getAllItemsThruSubProdId(req, res);
 });
+
+router.post("/getProdThruCatId", (req, res) => {
+  getProdThruCatId(req, res);
+});
+
+
+
+
+//MasterFilter
 router.post("/createMasterFilter", (req, res) => {
   createMasterFilter(req, res);
 });

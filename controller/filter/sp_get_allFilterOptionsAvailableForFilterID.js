@@ -1,8 +1,12 @@
 const { executeStoredProcedure } = require("../../helpers/storedProcedure");
 
 const getallFilterOptionsAvailableForFilterID = (req, res) => {
-  const values = [req.body.optionId, req.body.optionName, req.body.clause];
-  executeStoredProcedure("sp_get_allFilterOptionsAvailableForFilterID", [values]).then((result) => {
+  const { filterListID, maxFilterOptionID, limit } = req.body.params;
+  const values = [filterListID, maxFilterOptionID, limit];
+
+  executeStoredProcedure("sp_get_allFilterOptionsAvailableForFilterID", [
+    values,
+  ]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
     } else {

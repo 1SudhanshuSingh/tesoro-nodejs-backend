@@ -12,7 +12,7 @@ const createSubProduct = (req, res) => {
     JSON.stringify(req.body.FilterList),
     req.file.filename,
   ];
-  console.log(values);
+
   executeStoredProcedure("sp_create_subproduct", [values]).then((result) => {
     if (result["0"]["output"] < 0) {
       res.json(result);
